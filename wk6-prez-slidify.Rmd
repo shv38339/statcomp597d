@@ -1,0 +1,205 @@
+---
+title: "Week 6 Presentation"
+author: "Steele H. Valenzuela"
+date: "October 23, 2015"
+output: slidy_presentation
+---
+
+## Let's Set Up Camp (do before class) [1 of 3]
+
+Go to the following repo and download the following:
+**github.com/shv38339/statcomp597d**
+
+- *predictvals.R*
+- *eqn.R*
+
+## Let's Set Up Camp (do before class) [2 of 3]
+
+Next, install and upload the following libraries:
+
+```{r, messages = FALSE}
+library(dplyr, warn.conflicts = FALSE)
+library(ggplot2)
+library(gcookbook)
+library(nycflights13)
+library(broom)
+library(lubridate)
+```
+
+## Let's Set Up Camp (do before class) [3 of 3]
+
+And rename the following data sets (*optional*)
+
+```{r}
+htwt <- heightweight # from the gcookbook library
+flts <- flights # from the nycflights13 library
+```
+
+## Predicted Values [1 of 1]
+
+What if you want to add your own prediction line to a plot? 
+
+First, let's create a scatterplot using the `heightweight` data set (aptly renamed `htwt`). 
+```{r}
+# You may want to check out the data set first with the following command
+sp <- ggplot(data = htwt, aes(x = ageYear, y = heightIn)) + 
+      geom_point(colour = "grey40")
+```
+
+Now, let's create the corresponding linear model...
+```{r}
+model <- lm(heightIn ~ ageYear, data = htwt)
+```
+
+...and generate two new explanatory and response variables (aka X and Y).
+```{r}
+source(file = "predictvals.R") # from my github. save into your working directory
+lin.pred <- predictvals(model, "ageYear", "heightIn")
+```
+When you reach the end, examine the first 6 values of `lin.pred`.
+Additionally, examine the file *predictvals.R* to get a sense of what the function is doing. It's quite complex but understanding bits and pieces is crucial to see what's going on under the hood.
+
+## Annotated Text to a plot [1 of 1]
+
+How would you find the $R^2$ value of a linear model?
+```{r, eval = FALSE}
+str(summary(model))
+```
+So where was $R^2$? 
+
+Now, let's explore the add-on function `annotate(...)` (*Hint: `?annotate` to read about it.)
+```{r, eval = FALSE}
+sp + annotate("text", label = "r^2 = ???", x = Inf, y = -Inf, hjust = 1.1, vjust = -.5)
+```
+
+Check out the file *eqn.R* and see how it creates the object **eqn**, which we will input into `annotate(...)`.
+```{r, eval = FALSE}
+source(file = "eqn.R")
+sp + geom_line(data = lin.pred) +
+      annotate("text", label = eqn, parse = TRUE, x = Inf, y = -Inf, hjust = 1.1, vjust = -.5)
+```
+
+## Exercise 1
+
+1. Create a quadratic model from the `heightweight/htwt` data set.
+ a. (Hint: `model <- lm(y ~ x + I(x^2), data = dat)`)
+2. Create a scatterplot with a fitted quadratic model line.
+3. Insert the coefficient values and $R^2$ value as annotated text (Hint: will have to edit file `eqn.R`).
+4. Change the name of the axes and add a title.
+
+
+## Quick Overview of Broom
+
+How did we extract the $R^2$ value earlier?
+
+Run the following functions on the object **model** that was created earlier.
+- `tidy(...)`
+- `augment(...)`
+- `glance(...)`
+
+
+## dplyr
+
+Let's check out the flights data set
+```{r, eval = FALSE}
+dim(flights)
+head(flights)
+```
+In base `R`, how would you find all flights on December 25th?
+
+
+## dplyr Data Format
+
+When working with `dplyr`, save the data set as follows:
+```{r, eval = FALSE}
+data.df <- tbl_df(data) 
+```
+There's also no harm in saving over the object itself...or is there?
+
+
+## arrange(...) & select(...)
+
+
+```{r, eval = FALSE}
+arrange(flights, year, desc(month), desc(day))
+
+select(flights, carrier:air_time)
+select(flights, -(year:carrier))
+```
+
+## mutate(...)
+
+```{r, eval = FALSE}
+htwt1 <- mutate(htwt, bmi = 703*(weightLb/(heightIn^2)))
+head(htwt1)
+
+head(transmute(htwt, bmi = 703*(weightLb/heightIn^2)))
+```
+
+
+## summarise(...)
+
+```{r, eval = FALSE}
+summarise(flights, avg.dist = mean(distance))
+
+gender <- group_by(htwt, sex)
+summarise(gender, avg.Lb = mean(weightLb), avg.In = mean(heightIn))
+```
+
+
+## Pipe Operator %>%
+
+Rather than writing nested code, we may now write code from left to right (or top to bottom).
+```{r, eval = FALSE}
+pipe1 <- htwt %>% 
+          group_by(sex) %>% 
+            summarise(avg.Lb = mean(weightLb), 
+                      avg.In = mean(heightIn))
+pipe1
+```
+
+
+## Nested functions
+
+In `R` (and I'm sure in other languages), code is nested and can become quite messy and cumbersome to read, write, and execute. Here's an example.
+
+```{r, eval = FALSE}
+filter(
+  summarise(
+    select(
+      group_by(flights, year, month, day),
+      arr_delay, dep_delay
+    ),
+    arr = mean(arr_delay, na.rm = TRUE),
+    dep = mean(dep_delay, na.rm = TRUE)
+  ),
+  arr > 30 | dep > 30
+)
+```
+
+
+## Pipe Operator at full speed
+
+
+```{r, eval = FALSE}
+flights %>%
+  group_by(year, month, day) %>%
+    select(arr_delay, dep_delay) %>%
+      summarise(arr = mean(arr_delay, na.rm = TRUE),
+                dep = mean(dep_delay, na.rm = TRUE)) %>%
+        filter(arr > 30 | dep > 30)
+```
+
+
+## For more info on dplyr
+
+Here are more of the perks `dplyr` has to offer. This vignette will be extremely valuable. 
+```{r, eval = FALSE}
+browseVignettes(package = "dplyr")
+```
+
+
+## Homework (yay!)
+
+See my repo on GitHub for week 6 homework!
+
