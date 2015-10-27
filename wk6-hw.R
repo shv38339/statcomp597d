@@ -19,7 +19,8 @@ dat$year <- year(dat$newdate)
 # 2. Overall, what was the most wasteful day of the week? 
 # a. The most wasteful day(s) in January?
 # b. The least wasteful day(s) in February and March?
-# c. Create a line chart and colour by month. The x-axis should have the days of the week.
+# c. Create a line chart and colour by month. The x-axis should have the numbered day of that month...
+# cont. similar to a time series chart for one month with all 30 days along the axis.
 
 # 3. Find the average sales for each day and create a geom_bar() plot.
 
