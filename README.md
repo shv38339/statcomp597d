@@ -8,7 +8,7 @@ This repository contains *data*, *homework*, *lectures*, *Rscripts*, and *git-ex
 
 #### Online data sets
 
-Here's how to download data sets from online. 
+Here's how to download data sets from the interwebs. 
 
 ```{r}
 library(RCurl)
