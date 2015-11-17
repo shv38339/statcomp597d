@@ -1,0 +1,433 @@
+---
+title       : git & GitHub
+subtitle    : A Basic Introduction
+author      : Steele Valenzuela
+job         : the best TA ever
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+<!-- Limit image width and height -->
+<style type='text/css'>
+img {
+    max-height: 560px;
+    max-width: 964px;
+}
+</style>
+
+<!-- Center image on slide -->
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+<script type='text/javascript'>
+$(function() {
+    $("p:has(img)").addClass('centered');
+});
+</script>
+
+## (1) First, install git...
+
+And then we'll get down to business.
+
+
+http://git-scm.com/downloads
+
+
+Please download for your appropriate OS.
+
+---
+
+## (2) Let me try to guide you...
+
+
+and not hold your hand.
+
+So, what is version control? 
+
+Who is Linus Torvalds?
+
+When is the last time you've saved multiple drafts of a project? 
+
+Own up to it. Now.
+
+---
+
+## (3) An Illustration of Version Control (thanks Kostis)
+
+![Version Control][link0]
+
+
+[link0]: https://git-scm.com/book/en/v2/book/01-introduction/images/local.png
+
+---
+
+## (4) Let me show you a quick example (locally, of course)
+
+Remember these two commands: "cd" and "ls" (also, "clear").
+
+Here is what we're going to do. 
+
+1. Create file. (create rocket ship)
+2. Initiate git repository (prepare station)
+3. Add file to be tracked (prep the launch pad)
+4. Commit the file (launch the rocket ship from pad)
+5. Wash, rinse, and repeat
+
+Why would this be good when working with numerous lines of code?
+
+---
+
+## (5) Let me show you a quick example (locally, of course)
+
+Remember these two commands: "cd" and "ls" (also, "clear").
+
+Here is what we're going to do. 
+
+1. Create file. 
+2. git init
+3. git add <filename>
+4. git commit -m "present tense message"
+5. Repeat! (and check logs: git log)
+
+---
+
+## (6) Branches (later in the semester/life)
+
+```
+git branch iss91v2
+git checkout iss91v2
+```
+
+![Branches][link0.1]
+
+[link0.1]: https://git-scm.com/book/en/v2/book/03-git-branching/images/topic-branches-2.png
+
+They will eventually merge.
+
+---
+
+## (7) RStudio (Nick's video is ONLY 5 minutes)
+
+0. Create a GitHub profile (free and open source!)
+1. Let's use my lame GitHub repository for a quick example and copy the link in the bottom right corner.
+2. Create a new R project!
+  - *New Project* -> *Version Control* -> *Git* -> *Insert URL and Directory Name* -> *shazam!*
+3. *deep breath* This is a lot to take in.
+  - Compare local and online files (they should be the same).
+  - Let's make a **local** edit to the README.md file 
+  - Next, let's look at the Git tab in our Environment/History pane.
+  - *Check the box* for the edited file and hit *Commit*
+  - *Insert a message*, click *Commit*, and then *push* the file.
+  - FINALLY, check the online file to view the *pushed* changes.
+
+---
+
+## (8) And finally, finally...
+
+Give yourself a pat on the back.
+
+![pat-on-the-back][link6]
+
+[link6]: http://i.giphy.com/9Q249Qsl5cfLi.gif
+
+---
+
+## (9) Resources
+
+There are GUI's available but experiment with the terminal. It's "fun".
+Check these links out for additional help:
+  - [Official RStudio documentation] [link1]
+  - [Practice!] [link2]
+  - [Cheat Sheet] [link3]
+  - [Prof. Reich's YouTube video] [link4]
+  - [My friend Kostis' slides] [link5]
+
+[link1]: https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN
+[link2]: https://try.github.io/levels/1/challenges/1
+[link3]: https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf
+[link4]: https://www.youtube.com/watch?v=YxZ8J2rqhEM
+[link5]: https://github.com/UMassAmherst-GRiD/Git-Github-reference
+
+---
+
+## (10) Dreaded Homework (git & GitHub)
+
+0. Now is the time to organize your local folders and clean house! 
+1. Download git for your appropriate OS
+2. Create a GitHub profile and repository.
+ - upload a picture if you'd like
+4. Create an informative README.md
+5. Copy the online repo into a local repo/new R project.
+6. Create a *.Rmd homework file from slide (11) and push it back up. 
+
+---
+
+## (11) Dreaded Homework cont. (tidyr & dplyr)
+
+1. Skim/read the tidyr paper (piazza)
+2. Here's a link to a [condensed version][link7] of tidyr.
+ - And Hadley's repo: https://github.com/hadley/tidyr
+4. From the ggplot2 package, tidy up the "movies" data set.
+ - Specifically, variables r1:r10 and Action:Short.
+6. From the cafe data set, explain how you would tidy it up. Which variables?
+ - "Un-tidy" the data set by the variable Day Code/ Day of Week.
+
+[link7]: http://blog.rstudio.org/2014/07/22/introducing-tidyr/
+
+---
+
+## Shell Basics
+
+Print Working Directory
+```
+pwd
+```
+
+List Files (as well as hidden files)
+```
+ls
+ls -a
+```
+
+Change Directory
+```
+cd home/dont/put/spaces/in/folder/names/
+cd ~
+cd ..
+```
+
+---
+
+## Shell Basics (cont.)
+
+Create a file...  
+...and then insert a line into that file.
+```
+touch README.md
+echo "This will be the first line of the README.md file" >> README.md
+```
+
+And clear your terminal
+```
+clear
+```
+
+---
+
+## Setting Up Git
+
+Here are some basics.
+```
+git config --global user.name "Your Name Here"
+git config --global user.email "email.address@whateverdomain.com""
+git config --global color.ui true
+git config --global --list
+```
+
+---
+
+## Setting Up Git (cont.)
+
+Different ways to add files
+```
+git add --all 
+git add <list of files>
+git add *.txt
+git add docs/*.txt
+git add docs/
+```
+
+---
+
+## Viewing Staged Differences
+
+After saving a file, you may want to view the differences between snapshots that are UNSTAGED.
+```
+git diff
+```
+
+The step after saving a file is STAGING the file, aka `git add <filename>`. If you'd like to check the differences of that file and its previous snapshot, we have the following command.
+```
+git diff --staged
+```
+
+---
+
+## Unstaging Files
+
+After `git add <filename>`, let's say we forgot to make a few edits to <filename>. `git` allows us to unstage the file with the following command:
+```
+git reset HEAD <filename>
+```
+Why would we want to unstage a file?
+
+---
+
+## Here are two extremely useful commands
+
+Skip staging and commit with one command
+```
+git commit -a -m "Insert Present Tense Message Here"
+```
+Note: file must be tracked!
+
+Undoing A Commit
+```
+git reset --soft HEAD^
+```
+Here, we are simply resetting the file into staging. Before and after resetting, check the file with `git log` and `git status`. 
+
+---
+
+## Amending A Commit
+
+Let's say you forgot to add a file to a commit.
+```
+git add <forgotten file>
+git commit --amend -m "Original commit message and amended message"
+```
+I'm sure there are other uses for amending a `git commit` but I'm not too familiar with them yet.
+
+---
+
+## Pre-Push Commands
+
+Undo last commit and put changes into staging
+```
+git reset --soft HEAD^
+```
+
+Amend the previous commit
+```
+git commit --amend -m "New Message"
+```
+
+Undo last commit and all changes (be wary of this)
+```
+git reset --hard HEAD^
+git reset --hard HEAD^^
+```
+Stumper Question: What does the extra arrow mean for `... HEAD^^`?
+
+---
+
+## Adding A Remote (EXTREMELY IMPORTANT)
+
+The first command allows you to remotely add a repository url.
+```
+git remote add origin <github clone url>
+git remote -v
+```
+The second command allows you to view your remote information.
+
+If you would like to push your files/changes to the remote repository, then we have the following:
+```
+git push -u origin master
+```
+You may have to insert your username and password. I'll let you figure this out on your own (initiation into the `git` club. sorry.).
+
+To pull changes down from the remote
+```
+git pull
+```
+Would you edit your docs online and pull the changes? When would this be most useful?
+
+## Additional Remote Commands
+
+To add new remotes
+```
+git remote add <name> <address>
+```
+
+To remove remotes (especially if you made an error)
+```
+git remote rm <name>
+```
+
+(Review) To push to remotes
+```
+git push -u <name> <branch>
+```
+
+---
+
+## Here's what we'll do with BRANCHES
+
+First, create branch.  
+Secondly, let's review our branches.   
+And finally, let's jump onto the new branch. Quite the process, I know.
+```
+git branch <branch name>
+git branch
+git checkout <branch name>
+touch TESTBRANCH.md
+echo "This is the test branch file." >> TESTBRANCH.md
+```
+Now, go back to your master branch and check your files.
+
+---
+
+## Lez go
+
+Let's try that again with an in-class demonstration.
+
+![in-class demonstration][gif1].  
+
+[gif1]: http://i.giphy.com/oimCQlndn6KPe.gif
+
+---
+
+## Remaining Branch Commands
+
+After merging, let's delete the branch.
+```
+git branch -d <branchname>
+```
+
+If we want to CREATE a new branch & check it out with one command, we use the following:
+```
+git checkout -b <anotherbranch>
+```
+
+Oh yeah, about merging. We have to go back to the `master` branch and then `merge <branchname>` into it.
+```
+git checkout master
+git merge <branchname>
+```
+Now check the log! 
+
+---
+
+## git log
+
+Here are alternative ways to view `git log`. Reading these will shine light on why present tense commit messages are crucial.
+```
+git log
+git log --pretty=oneline
+git log --oneline -p
+git log --oneline --stat
+git log --oneline --graph
+```
+
+---
+
+## Homework (but not really homework...1 of 2)
+
+1. Go through the 2nd half of this lecture and "play"" with the commands to become more comfortable with them.
+2. If you still can't edit a file locally and push it up to your online repository, please email me and I'll try my best to help out via email or online chat or whatever. Here are some resources:
+  - Prof. Jenny Brian has some excellent resources on her course [page][link11]
+  - This meticulous, yet excellent [tutorial and video (s)][link22]
+  - And the [obvious][link33]
+
+[link11]: https://stat545-ubc.github.io/git03_rstudio-meet-git.html
+[link22]: http://www.dataschool.io/git-and-github-videos-for-beginners/
+[link33]: https://help.github.com/articles/set-up-git/
+
+---
+
+## Homework! (2 of 2)
+
+3. For Tuesday's class, we'll be "forking" a repository and creating a "pull" request. These are some funky verbs so try to keep up. Here is the link for what we'll cover. Please take a look at this page before you come to class (and say thank you to this instructor at Princeton for making an awesome guide): 
+ - http://www.princeton.edu/~mjs3/soc504_s2015/submitting_homework.shtml
+

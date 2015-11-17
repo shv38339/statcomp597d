@@ -1,20 +1,17 @@
-This repository will be used for downloading data sets for the following class:
+This repository will be used for submitting homework for StatComp597D. 
 
-  **Introduction to Statistical Computation**
+**Introduction to Statistical Computation**
 
-Here's how to download those data sets!
+#### Contents of this repo 
+
+This repository contains *data*, *homework*, *lectures*, *Rscripts*, and *git-example* files (need to update).
+
+#### Online data sets
+
+Here's how to download data sets from online. 
 
 ```{r}
 library(RCurl)
 url <- getURL("url...")
 data <- read.csv(file = textConnection(url), header = TRUE) # typically, header will equal TRUE
-# shazam!
-```
-
-Such lame code.
-
-```{r}
-x <- c(1, 2, 3, 4, 5, 6, 7)
-y<- c(7, 6, 5, 4, 3, 2, 1)
-qplot(x,y)
 ```

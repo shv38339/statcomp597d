@@ -1,0 +1,42 @@
+---
+title: "wk9-homework-lastname-firstname"
+author: "Steele H. Valenzuela"
+date: "November 16, 2015"
+output: html_document
+---
+
+#### 1. Initial GitHub workflow
+
+a. Pat yourselves on the back if you were able to "fork", then "clone" this repo. Maybe massage your brain, too.
+
+b. Re-save this file with your last and first name as well as altering the title of this file.
+
+#### Tips for creating functions
+
+*Use the least possible number of steps. Work line by line, printing out each value as you create the function. Trying to create a function that will solve the whole problem will typically lead to long debugging times because you will not know where you made the mistake.*
+
+#### 2. if-then-else
+Create a function `is.a.number()` that takes a single parameter `X` and returns `"Is a number"` if it is a number, `"Is NA"` if it is an `NA` value, and `"I have no clue"` if it is neither a number nor an `NA` value. Use the `is.na()` and `is.numeric()` functions.
+
+
+
+#### 3. primes 
+Create a function that when inputting a single prime number between 3 and 100, it will output a `TRUE` or `FALSE` in a `message()`. Insert an error message as if somebody were to insert a number less than 3, greater than 100, or a non-numeric character. (*Please don't insert all of the prime numbers between 3 and 100 into the function...*)
+
+
+
+#### 4. ggplot2
+
+a. Using `ggplot2`, create a function that when inputting a single continuous variable, it will print out a histogram. Include arguments to alter the theme, x-variable label, a title, and a `TRUE` or `FALSE` option to create a density plot.
+
+
+
+
+b. Similarly, create a function that when inputting two continuous variables, it will print a scatterplot. Additionally, in the console, print the mean and variance of the two variables as well as the coefficient value of the specified x-variable.  Include arguments to alter the title and a `TRUE` or `FALSE` option to include a smoothing method of *lm* aka a simple linear model line.
+
+
+#### 5. Remaining GitHub workflow
+
+a. Now finish off the workflow of submitting your homework by "committing" the changes locally, "pushing" the changes to YOUR online repo, and finally creating a pull request. 
+
+b. Pat yourselves on the back, again.  You deserved it.
