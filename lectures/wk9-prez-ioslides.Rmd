@@ -1,0 +1,154 @@
+---
+title: "Functions"
+subtitle: "Are they (Un)necessary?"
+author: "Steele H. Valenzuela - the best TA ever"
+date: "November 16, 2015"
+output: 
+  ioslides_presentation:
+  widescreen: true
+---
+
+# Quiz
+
+## Basic Format of a Function {.smaller}
+
+In `R`, our functions tend to be functions of the base functions.
+```{r}
+a <- sample(x = 10, size = 20, replace = TRUE)
+
+hello <- function() cat("hello, world!\n") # necessary, of course
+
+f1 <- function(x) x + 3 # one line functions
+
+f2 <- function(x, y) { # more than one line functions
+  x + y 
+}                      # include these curly braces
+```
+
+What will be outputted (is that a verb?)?
+```{r}
+f1(10)
+f2(10, -10)
+```
+
+## Why should I learn to write functions? (From Nick's slides)
+
+* If repeating operations within your code, consider functionalizing it
+* Pick good, short, clear, active names (particularly verbs)
+* Creates standardized ways to perform certain operations
+* Decreases likelihood of errors
+* Less code is typed, especially when changing one piece
+* Facilitates literate coding, making things simpler
+* Makes debugging simpler
+
+## Basic Format of a Function (cont.)
+
+```{r function.name, eval = FALSE}
+function.name <- function(arguments) {
+  # body of a function
+  ...
+  return(something) # always include a return statement
+}
+```
+Can you easily add functions in other statistical programs?
+
+
+## You can communicate with the user
+
+Often, these are couched in if-statements, i.e. "if some unusual condition is met, here is something you should know".
+```{r error function, eval = TRUE}
+error_msg_fun <- function(x) {
+  message("Lift off!")
+  warning("Houston, we have a minor glitch. No biggie.")
+}
+error_msg_fun(a)
+```
+Does it matter what we input into the function `error_msg_fun(...)`?
+
+
+## You can communicate with the user (cont.) {.build}
+
+Let's try `stop(...)`.
+```{r error function 2, eval = TRUE, error=TRUE}
+error_msg_stop <- function(x) {
+  if(class(x) != "numeric")
+    stop("x must be numeric!")
+  a <- x^2 + x - 10
+  return(a)
+}
+error_msg_stop("chicken")
+error_msg_stop(3)
+```
+
+## Other functional features...
+
+```{r my_fun, eval = TRUE, error = TRUE}
+my_fun <- function(x, ...) {
+  require(ggplot2)
+  if(class(x) != "numeric" & class(x) != "integer")
+    stop("x must be numeric")
+  p <- qplot(x, ...)
+  print(p)
+}
+```
+Notice the `...`? What does it allow us to do? 
+
+## Other functional features (cont.)... {.build .smaller}
+
+First, let's check the class of *a*, from the first slide and then input *a* into our function.
+```{r, message = TRUE, fig.height=3, fig.width=3, fig.align='center'}
+my_fun(a)
+```
+
+Let's take advantage of the message we see and use the `...` feature. Change the *binwidth* option for this function.
+
+
+## A flood functions that may be useful {.smaller}
+
+* `class(...)` & `typeof(...)` for characters and numbers
+* `names(...)` & `str(...)` to view the contents of an object
+* `args(...)` to view the arguments of a function
+* `length(...)` & `dim(...)` for the length of a vector or data frame/matrix
+* `cat(...)`, `print(...)`, or `paste(...)` for text
+* `!=`, `==`, `<=`, `=>`, `&`, `|` for logical operators
+* `round(...)` for outputted numbers that you'd like to truncate
+* `if` & `ifelse` for conditional statements
+* `while` and `for` loops
+* `as.numeric(...)`, `is.numeric(...)`, and others
+* and many more of the base functions located at this [link][id1]
+
+[id1]: https://cran.r-project.org/doc/contrib/Short-refcard.pdf
+
+
+## Resources
+
+Here are some of the resources I used for this lecture and others which cover more advanced areas of creating functions.
+
+* Hadley's [page][id2]
+* UCLA's [page][id3] (a bit on `for` loops and the `while` function)
+* Prof. Nicholas Reich's [slides][id4]
+* Official [R documentation][id5] (meticulous, but a necessary read)
+
+[id2]: http://adv-r.had.co.nz/Exceptions-Debugging.html
+[id3]: http://www.ats.ucla.edu/stat/r/library/intro_function.htm
+[id4]: http://nickreich.github.io/statComp2014/lectures/week10/functions-in-R.pdf
+[id5]: https://cran.r-project.org/doc/manuals/R-intro.html#Writing-your-own-functions
+
+
+## Homework
+
+1. Follow this [github workflow][id6] for the homework.
+    * If you have previously "cloned" the **statcomp597d** repo onto your local computer, delete it and follow the github workflow. 
+    * After you have "forked" the statcomp597d online repo...
+    * Clone **your** online repo to your local machine...
+    * Complete the homework...
+    * Commit the changes...
+    * Push the changes to your online repo...
+    * And finally, create a pull request. 
+
+[id6]: http://www.princeton.edu/~mjs3/soc504_s2015/submitting_homework.shtml
+
+
+
+
+
